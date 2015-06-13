@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.app.occupant']}" />
+        </ui:define>
+        
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="q" value="#{occupantBean.occupantId}" />
+                </f:metadata>
+            </f:view>
+            
+            <h:body>
+                <h:form id="employeFormDelete">
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 75%">
+
+                        <p:fieldset legend="#{msg['hotel.view.app.confirmation']}">
+                            <h:panelGrid columns="6" cellpadding="10">
+                                <p:outputLabel value="#{msg['hotel.view.occupant.cni']} : " />
+                                <h:outputText value="#{occupantBean.occupant.cni}" />
+
+                                <p:outputLabel value="#{msg['hotel.view.occupant.nom']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.nom}" />
+
+                                    <p:outputLabel value="#{msg['hotel.view.occupant.prenom']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.prenom}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.occupant.sexe']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.sexe}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.occupant.dateNaissance']} : " />
+                                    <h:outputLabel value="#{occupantBean.occupant.dateNaissance}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputLabel>
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.occupant.lieuNaissance']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.lieuNaissance}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.occupant.nationalite']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.nationalite}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.occupant.profession']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.profession}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.telephone']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.adresse.telephone}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.email']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.adresse.email}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.boitePostal']} : " />
+                                    <h:outputText value="#{occupantBean.occupant.adresse.boitePostal}" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                        
+                        <p:fieldset legend="#{msg['hotel.view.app.deleteAction']}">
+                            <h:panelGrid columns="4" cellpadding="5">
+                                <p:commandButton value="#{msg['hotel.view.app.okBouton']}" action="#{occupantBean.doDelete()}" ajax="false" icon="ui-icon-trash" />
+                                <p:commandButton value="#{msg['hotel.view.app.cancelBouton']}" action="#{occupantBean.doList()}" icon="ui-icon-close" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

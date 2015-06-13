@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.app.fonction']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="q" value="#{fonctionBean.fonctionId}" />
+                </f:metadata>
+            </f:view>
+
+            <h:body>
+                <h:form id="fonctionFormDelete">
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 75%">
+
+                        <p:fieldset legend="#{msg['hotel.view.app.confirmation']}">
+                            <p:outputLabel value="#{msg['hotel.view.fonction.title']} : " />
+                            <p:outputLabel value="#{fonctionBean.fonction.libelle}" />
+                        </p:fieldset>
+
+                        <p:fieldset legend="#{msg['hotel.view.app.deleteAction']}">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:commandButton value="#{msg['hotel.view.app.okBouton']}" action="#{fonctionBean.doDelete()}" icon="ui-icon-trash" />
+                                <p:commandButton value="#{msg['hotel.view.app.cancelBouton']}" action="#{fonctionBean.doList()}" icon="ui-icon-close" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                        
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

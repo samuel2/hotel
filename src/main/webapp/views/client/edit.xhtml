@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Modification du client #{clientBean.client.nom}
+        </ui:define>
+        <ui:define name="content">
+            
+            <h:form id="clientFormEdit">
+            <f:metadata>
+                <f:viewParam name="q" value="#{clientBean.clientId}"/>
+            </f:metadata>
+                <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+                    <p:fieldset legend="#{msg['hotel.view.client.showClient']}">
+                        <h:panelGrid columns="9" cellpadding="5">
+                            <p:outputLabel value="#{msg['hotel.view.client.code']}  :"/>
+                            <h:panelGroup>
+                                <p:inputText id="code" value="#{clientBean.client.code}"
+                                            required="true"  requiredMessage="#{msg['hotel.view.error.validation']}"/>
+                              <p:message for="code"/>
+                            </h:panelGroup>
+                            <h:inputHidden id="id" value="#{clientBean.client.id}"/>
+                            
+                            <p:outputLabel value="#{msg['hotel.view.client.nom']}  :"/>
+                            <h:panelGroup>
+                                <p:inputText id="nom" value="#{clientBean.client.nom}"
+                                            required="true"  requiredMessage="#{msg['hotel.view.error.validation']}"/>
+                              <p:message for="nom"/>
+                            </h:panelGroup>
+                            
+                            <p:outputLabel value="#{msg['hotel.view.adresse.telephone']}  :"/>
+                            <h:panelGroup>
+                                <p:inputText id="telephone" value="#{clientBean.client.adresse.telephone}"
+                                            required="true"  requiredMessage="#{msg['hotel.view.error.validation']}"/>
+                              <p:message for="telephone"/>
+                            </h:panelGroup>
+                            
+                            <p:outputLabel value="#{msg['hotel.view.adresse.email']}  :"/>
+                            <h:panelGroup>
+                                <p:inputText id="email" value="#{clientBean.client.adresse.email}"
+                                            required="true"  requiredMessage="#{msg['hotel.view.error.validation']}"/>
+                              <p:message for="email"/>
+                            </h:panelGroup>
+                            
+                            <p:outputLabel value="#{msg['hotel.view.adresse.boitePostal']}  :"/>
+                            <h:panelGroup>
+                                <p:inputText id="boitePostal" value="#{clientBean.client.adresse.boitePostal}"
+                                            required="true"  requiredMessage="#{msg['hotel.view.error.validation']}"/>
+                              <p:message for="boitePostal"/>
+                            </h:panelGroup>
+                    </h:panelGrid>
+
+                    </p:fieldset>
+
+                    <p:fieldset legend="Action">
+                            <h:panelGrid columns="2" cellpadding="5">  
+                                <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{clientBean.doList()}" ajax="false" immediate="true" icon="ui-icon-folder-open" />
+                                <p:commandButton value="#{msg['hotel.view.app.editBouton']}" action="#{clientBean.doUpdate()}" ajax="false" icon="ui-icon-refresh" />
+                         </h:panelGrid> 
+                    </p:fieldset>
+
+                </h:panelGrid>
+                
+           </h:form>
+      </ui:define>
+    </ui:composition>
+</html>
+

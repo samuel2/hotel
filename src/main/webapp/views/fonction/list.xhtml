@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.fonction.listeFonction']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form id="fonctionFormList">
+                <h:panelGrid columns="1" cellpadding="5" style="width: 75%">
+                    <p:dataTable id="dataTable" var="fonction" value="#{fonctionListBean.allFonctions}"
+                                 rowKey="#{fonction.id}" selection="#{fonctionListBean.fonction}" selectionMode="single"
+                                 paginator="true" paginatorPosition="bottom" rows="10" rowsPerPageTemplate="2,5,10,15"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}
+                                 {RowsPerPageDropdown}">
+
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['hotel.view.fonction.listeFonction']}" />
+                        </f:facet>
+
+                        <p:ajax event="rowSelect" update=":fonctionFormList:edit_url, :fonctionFormList:show_url, :fonctionFormList:delete_url" />
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['hotel.view.fonction.title']}" />
+                            </f:facet>
+                            <h:outputText value="#{fonction.libelle}" />
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                        <h:panelGrid columns="6" cellpadding="6">
+                            <p:commandButton value="#{msg['hotel.view.app.newBouton']}" action="#{fonctionBean.doNew()}" ajax="false" icon="ui-icon-document" />
+
+                            <p:button disabled="#{fonctionListBean.buttonDisabled}" value="#{msg['hotel.view.app.editBouton']}" id="edit_url" outcome="#{fonctionListBean.editUrl}" icon="ui-icon-refresh" > 
+                                <f:param name="q" value="#{fonctionListBean.fonction.id}"/>
+                            </p:button>
+                            <p:button disabled="#{fonctionListBean.buttonDisabled}" value="#{msg['hotel.view.app.showBouton']}" id="show_url" outcome="#{fonctionListBean.showUrl}" icon="ui-icon-search" > 
+                                <f:param name="q" value="#{fonctionListBean.fonction.id}"/>
+                            </p:button>
+                            <p:button disabled="#{fonctionListBean.buttonDisabled}" value="#{msg['hotel.view.app.deleteBouton']}" id="delete_url" outcome="#{fonctionListBean.deleteUrl}" icon="ui-icon-trash" > 
+                                <f:param name="q" value="#{fonctionListBean.fonction.id}"/>
+                            </p:button>
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

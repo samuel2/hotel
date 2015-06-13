@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{msg['hotel.view.reglement.listeReglement']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form id="reglementFormList">
+                <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+                    <p:dataTable id="dataTable" var="reglement" value="#{reglementListBean.allReglements}"
+                                 rowKey="#{reglement.id}" selection="#{reglementListBean.reglement}" selectionMode="single"
+                                 paginator="true" paginatorPosition="bottom" rows="10" rowsPerPageTemplate="2,5,10,15"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}
+                                 {RowsPerPageDropdown}">
+
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['hotel.view.reglement.listeReglement']}" />
+                        </f:facet>
+
+                        <p:ajax event="rowSelect" update=":reglementFormList:edit_url, :reglementFormList:show_url, :reglementFormList:delete_url" />
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['hotel.view.reglement.numero']}" />
+                            </f:facet>
+                            <h:outputText value="#{reglement.numero}" />
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['hotel.view.reglement.montant']}" />
+                            </f:facet>
+                            <h:outputText value="#{reglement.montant}" />
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['hotel.view.reglement.dateReglement']}" />
+                            </f:facet>
+                            <h:outputText value="#{reglement.dateReglement}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                        <h:panelGrid columns="6" cellpadding="6">
+                            <p:commandButton value="#{msg['hotel.view.app.newBouton']}" action="#{reglementBean.doNew()}" ajax="false" icon="ui-icon-document" />
+
+                            <p:button disabled="#{reglementListBean.buttonDisabled}" value="#{msg['hotel.view.app.editBouton']}" id="edit_url" outcome="#{reglementListBean.editUrl}" icon="ui-icon-refresh" > 
+                                <f:param name="q" value="#{reglementListBean.reglement.id}"/>
+                            </p:button>
+                            <p:button disabled="#{reglementListBean.buttonDisabled}" value="#{msg['hotel.view.app.showBouton']}" id="show_url" outcome="#{reglementListBean.showUrl}" icon="ui-icon-search" > 
+                                <f:param name="q" value="#{reglementListBean.reglement.id}.id}"/>
+                            </p:button>
+                            <p:button disabled="#{reglementListBean.buttonDisabled}" value="#{msg['hotel.view.app.deleteBouton']}" id="delete_url" outcome="#{reglementListBean.deleteUrl}" icon="ui-icon-trash" > 
+                                <f:param name="q" value="#{reglementListBean.reglement.id}.id}"/>
+                            </p:button>
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

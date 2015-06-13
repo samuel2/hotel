@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.app.occupant']}" />
+        </ui:define>
+
+
+        <ui:define name="content">
+            <h:body>
+                <h:form id="employeFormEdit">
+                    <f:view>
+                        <f:metadata>
+                            <f:viewParam name="q" value="#{occupantBean.occupantId}" />
+                        </f:metadata>
+                    </f:view>
+
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+                        <p:fieldset legend="#{msg['hotel.view.occupant.showOccupant']}">
+                            <h:panelGrid columns="6" cellpadding="10">
+                                <p:outputLabel value="#{msg['hotel.view.occupant.cni']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="cni" value="#{occupantBean.occupant.cni}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="cni" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.occupant.nom']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="nom" value="#{occupantBean.occupant.nom}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="nom" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.occupant.prenom']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="prenom" value="#{occupantBean.occupant.prenom}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="prenom" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.occupant.sexe']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="sexe" value="#{occupantBean.occupant.sexe}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="sexe" />
+                                </h:panelGroup>
+                                
+                                <p:outputLabel value="#{msg['hotel.view.occupant.profession']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="profession" value="#{occupantBean.occupant.profession}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="profession" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.occupant.nationalite']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="nationalite" value="#{occupantBean.occupant.nationalite}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="nationalite" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.occupant.dateNaissance']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="dateNaissance" value="#{occupantBean.occupant.dateNaissance}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:inputText>
+                                    <p:message for="dateNaissance" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.occupant.lieuNaissance']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="lieuNaissance" value="#{occupantBean.occupant.lieuNaissance}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="lieuNaissance" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.adresse.telephone']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="telephone" value="#{occupantBean.occupant.adresse.telephone}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="telephone" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.adresse.email']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="email" value="#{occupantBean.occupant.adresse.email}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="email" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.adresse.boitePostal']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="boitePostal" value="#{occupantBean.occupant.adresse.boitePostal}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="boitePostal" />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                            <h:panelGrid columns="3" cellpadding="5">
+                                
+                                <h:inputHidden id="id_occupant" value="#{occupantBean.occupant.id}"/>
+                                
+                                <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{occupantBean.doList()}" ajax="false" icon="ui-icon-folder-open" />
+                                <p:commandButton value="#{msg['hotel.view.app.saveBouton']}" action="#{occupantBean.doUpdate()}" ajax="false" icon="ui-icon-disk">
+                                    <f:actionListener type="com.urservices.urerp.hotel.listener.CniValidationListener" />
+                                </p:commandButton>
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

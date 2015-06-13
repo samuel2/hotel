@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{msg['hotel.view.chambre.informationChambre']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <h:body>
+                <h:form id="chambreFormShow">
+                    <f:view>
+                        <f:metadata>
+                            <f:viewParam name="q" value="#{chambreBean.chambreId}" />
+                        </f:metadata>
+                    </f:view>
+
+                    <h:panelGrid columns="1" cellpadding="10" style="width: 100%">
+                        <p:fieldset legend="#{msg['hotel.view.chambre.informationChambre']}">
+                            <h:panelGrid columns="9" cellpadding="10">
+                                <p:outputLabel value="#{msg['hotel.view.chambre.numero']} : " />
+                                <p:outputLabel value="#{chambreBean.chambre.numero}" />
+
+                                <p:outputLabel value="#{msg['hotel.view.chambre.position']} : " />
+                                <p:outputLabel value="#{chambreBean.chambre.position}" />
+
+                                <p:outputLabel value="#{msg['hotel.view.chambre.type']} : " />
+                                <p:outputLabel value="#{chambreBean.chambre.type}" />
+
+                                <p:outputLabel value="#{msg['hotel.view.chambre.prix']} : " />
+                                <p:outputLabel value="#{chambreBean.chambre.prix}" />
+
+                                <p:outputLabel value="#{msg['hotel.view.chambre.etat']} : " />
+                                <p:outputLabel value="" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                        
+                        <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                            <h:panelGrid columns="3" cellpadding="5">
+                                <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{chambreBean.doList()}" ajax="false" icon="ui-icon-folder-open" />
+                                <p:commandButton value="#{msg['hotel.view.app.editBouton']}" action="#{chambreBean.doEdit()}" ajax="false" icon="ui-icon-refresh" />
+                                <p:commandButton value="#{msg['hotel.view.app.newBouton']}" action="#{chambreBean.doNew()}" ajax="false" icon="ui-icon-document" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

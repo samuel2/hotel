@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{msg['hotel.view.client.showClient']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="q" value="#{clientBean.clientId}" />
+                </f:metadata>
+
+                <h:body>
+                    <h:form id="clientFormShow">
+                        <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+
+                            <p:fieldset legend="#{msg['hotel.view.client.showClient']}">
+                                <h:panelGrid columns="12" cellpadding="10">
+                                    <p:outputLabel value="#{msg['hotel.view.client.code']} : " />
+                                    <p:outputLabel value="#{clientBean.client.code}" />
+
+                                    <p:outputLabel value="#{msg['hotel.view.client.nom']} : " />
+                                    <p:outputLabel value="#{clientBean.client.nom}" />
+
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.telephone']} : " />
+                                    <p:outputLabel value="#{clientBean.client.adresse.telephone}" />
+
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.email']} : " />
+                                    <p:outputLabel value="#{clientBean.client.adresse.email}" />
+
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.boitePostal']} : " />
+                                    <p:outputLabel value="#{clientBean.client.adresse.boitePostal}" />
+                                </h:panelGrid>
+                            </p:fieldset>
+
+                            <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                                <h:panelGrid columns="3" cellpadding="5">
+                                    <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{clientBean.doList()}" icon="ui-icon-folder-open" />
+
+                                    <p:button value="#{msg['hotel.view.app.editBouton']}" id="edit_url" outcome="#{clientListBean.editUrl}" icon="ui-icon-refresh">
+                                        <f:param name="q" value="#{clientBean.client.id}" />
+                                    </p:button>
+
+                                    <p:commandButton value="#{msg['hotel.view.app.newBouton']}" action="#{clientBean.doNew()}" icon="ui-icon-document" />
+                                </h:panelGrid>
+                            </p:fieldset>
+
+                        </h:panelGrid>
+                    </h:form>
+                </h:body>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</html>
+

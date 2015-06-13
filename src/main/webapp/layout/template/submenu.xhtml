@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    <h:body>
+        <h:form id="submenu">
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="#{msg['hotel.view.app.fonction']}" action="#{fonctionBean.doList()}" ajax="false" />
+                    <p:menuitem value="#{msg['hotel.view.app.employe']}" action="#{employeBean.doList()}" ajax="false" />
+                    <p:menuitem value="#{msg['hotel.view.app.occupant']}" action="#{occupantBean.doList()}" ajax="false" />
+                    <p:menuitem value="#{msg['hotel.view.app.client']}" action="#{clientBean.doList()}" ajax="false" />
+                    <p:menuitem value="#{msg['hotel.view.app.chambre']}" action="#{chambreBean.doList()}" ajax="false" />
+                    <p:menuitem value="#{msg['hotel.view.app.reservation']}" action="#" ajax="false" />
+                    <p:menuitem value="#{msg['hotel.view.app.reglement']}" action="#{reglementBean.doList()}" ajax="false" />
+                    <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                    <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                    <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </h:body>
+</html>

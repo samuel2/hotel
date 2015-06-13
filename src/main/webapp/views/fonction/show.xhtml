@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.fonction.newFonction']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="q" value="#{fonctionBean.fonctionId}" />
+                </f:metadata>
+
+                <h:body>
+                    <h:form id="fonctionFormShow">
+                        <h:panelGrid columns="1" cellpadding="5" style="width: 75%">
+
+                            <p:fieldset legend="#{msg['hotel.view.fonction.newFonction']}">
+                                <p:outputLabel value="#{msg['hotel.view.fonction.title']} : " />
+                                <p:outputLabel value="#{fonctionBean.fonction.libelle}" />
+                            </p:fieldset>
+
+                            <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                                <h:panelGrid columns="3" cellpadding="5">
+                                    <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{fonctionBean.doList()}" icon="ui-icon-folder-open" />
+
+                                    <p:button value="#{msg['hotel.view.app.editBouton']}" id="edit_url" outcome="#{fonctionListBean.editUrl}" icon="ui-icon-refresh">
+                                        <f:param name="q" value="#{fonctionBean.fonction.id}" />
+                                    </p:button>
+                                    
+                                    <p:commandButton value="#{msg['hotel.view.app.newBouton']}" action="#{fonctionBean.doNew()}" icon="ui-icon-document" />
+                                </h:panelGrid>
+                            </p:fieldset>
+                            
+                        </h:panelGrid>
+                    </h:form>
+                </h:body>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</html>
+

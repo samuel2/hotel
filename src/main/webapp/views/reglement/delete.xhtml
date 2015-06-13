@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{msg['hotel.view.app.reglement']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="q" value="#{reglementBean.reglementId}" />
+                </f:metadata>
+            </f:view>
+
+            <h:body>
+                <h:form id="reglementFormDelete">
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+
+                        <p:fieldset legend="#{msg['hotel.view.app.confirmation']}">
+                            <h:panelGrid columns="12" cellpadding="10">
+                                <p:outputLabel value="#{msg['hotel.view.reglement.numero']} : " />
+                                <p:outputLabel value="#{reglementBean.reglement.numero}" />
+
+                                <p:outputLabel value="#{msg['hotel.view.reglement.montant']} : " />
+                                <p:outputLabel value="#{reglementBean.reglement.montant}" />
+
+                                <p:outputLabel value="#{msg['hotel.view.reglement.dateReglement']} : " />
+                                <p:outputLabel value="#{reglementBean.reglement.dateReglement}" />
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="#{msg['hotel.view.app.deleteAction']}">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:commandButton value="#{msg['hotel.view.app.okBouton']}" action="#{reglementBean.doDelete()}" icon="ui-icon-trash" />
+                                <p:commandButton value="#{msg['hotel.view.app.cancelBouton']}" action="#{reglementBean.doList()}" icon="ui-icon-close" />
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

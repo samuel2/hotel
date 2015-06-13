@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.app.employe']}" />
+        </ui:define>
+        
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="q" value="#{employeBean.employeId}" />
+                </f:metadata>
+            </f:view>
+            
+            <h:body>
+                <h:form id="employeFormDelete">
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 75%">
+
+                        <p:fieldset legend="#{msg['hotel.view.app.confirmation']}">
+                            <h:panelGrid columns="6" cellpadding="10">
+                                    <p:outputLabel value="#{msg['hotel.view.employe.cni']} : " />
+                                    <h:outputText value="#{employeBean.employe.cni}" />
+
+                                    <p:outputLabel value="#{msg['hotel.view.employe.nom']} : " />
+                                    <h:outputText value="#{employeBean.employe.nom}" />
+
+                                    <p:outputLabel value="#{msg['hotel.view.employe.prenom']} : " />
+                                    <h:outputText value="#{employeBean.employe.prenom}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.employe.sexe']} : " />
+                                    <h:outputText value="#{employeBean.employe.sexe}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.employe.dateNaissance']} : " />
+                                    <h:outputLabel value="#{employeBean.employe.dateNaissance}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputLabel>
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.employe.lieuNaissance']} : " />
+                                    <h:outputText value="#{employeBean.employe.lieuNaissance}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.employe.nationalite']} : " />
+                                    <h:outputText value="#{employeBean.employe.nationalite}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.telephone']} : " />
+                                    <h:outputText value="#{employeBean.employe.adresse.telephone}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.email']} : " />
+                                    <h:outputText value="#{employeBean.employe.adresse.email}" />
+                                    
+                                    <p:outputLabel value="#{msg['hotel.view.adresse.boitePostal']} : " />
+                                    <h:outputText value="#{employeBean.employe.adresse.boitePostal}" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                        
+                        <p:fieldset legend="#{msg['hotel.view.app.deleteAction']}">
+                            <h:panelGrid columns="4" cellpadding="5">
+                                <p:commandButton value="#{msg['hotel.view.app.okBouton']}" action="#{employeBean.doDelete()}" ajax="false" icon="ui-icon-trash" />
+                                <p:commandButton value="#{msg['hotel.view.app.cancelBouton']}" action="#{employeBean.doList()}" icon="ui-icon-close" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

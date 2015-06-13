@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.fonction.newFonction']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <h:body>
+                <h:form id="fonctionFormNew">
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 75%">
+
+                        <p:fieldset legend="#{msg['hotel.view.fonction.newFonction']}">
+                            <p:outputLabel value="#{msg['hotel.view.fonction.title']} : " />
+                            <h:panelGroup>
+                                <p:inputText id="titre" value="#{fonctionBean.fonction.libelle}"
+                                             required="true" requiredMessage="#{msg['hotel.view.error.validation']}"
+                                             validator="fonctionValidator"/>
+                                <p:message for="titre" />
+                            </h:panelGroup>
+                        </p:fieldset>
+
+                        <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{fonctionBean.doList()}" ajax="false" immediate="true" icon="ui-icon-folder-open" />
+                                <p:commandButton value="#{msg['hotel.view.app.saveBouton']}" action="#{fonctionBean.doCreate()}" ajax="false" icon="ui-icon-disk" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{msg['hotel.view.chambre.newChambre']}" />
+        </ui:define>
+
+        <ui:define name="content">
+            <h:body>
+                <h:form id="chambreFormNew">
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 75%">
+                        <p:fieldset legend="#{msg['hotel.view.chambre.newChambre']}">
+                            <h:panelGrid columns="4" cellpadding="10" style="width: 75%">
+
+                                <p:outputLabel value="#{msg['hotel.view.chambre.numero']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="numero" value="#{chambreBean.chambre.numero}"
+                                                 required="true" requiredMessage="#{msg['hotel.view.error.validation']}"
+                                                 validator="numeroChambreValidator" />
+                                    <p:message for="numero" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.chambre.position']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="position" value="#{chambreBean.chambre.position}"
+                                                 required="true" requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="position" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.chambre.prix']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="prix" value="#{chambreBean.chambre.prix}"
+                                                 required="true" requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="prix" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.chambre.type']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="type" value="#{chambreBean.chambre.type}"
+                                                 required="true" requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="type" />
+                                </h:panelGroup>
+                                
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{chambreBean.doList()}" icon="ui-icon-folder-open" immediate="true" />
+                                <p:commandButton value="#{msg['hotel.view.app.saveBouton']}" action="#{chambreBean.doCreate()}" icon="ui-icon-disk" ajax="false" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.app.employe']}" />
+        </ui:define>
+
+
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="q" value="#{employeBean.employeId}" />
+                </f:metadata>
+            </f:view>
+
+            <h:body>
+                <h:form id="employeFormShow">
+                    <h:panelGrid columns="1" cellpadding="20" style="width: 100%">
+
+                        <p:dataTable id="dTable" var="employe" value="#{employeBean.employe}" rows="10">
+                            <f:facet name="header">
+                                <h:outputLabel value="#{msg['hotel.view.employe.informationSurEmploye']}" />
+                            </f:facet>
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.employe.cni']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{employe.cni}" /> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.employe.nom']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{employe.nom}" /> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.employe.prenom']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{employe.prenom}" /> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.employe.sexe']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{employe.sexe}" /> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.employe.dateNaissance']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{employe.dateNaissance}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.employe.lieuNaissance']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{employe.lieuNaissance}" /> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.employe.nationalite']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{employe.nationalite}" /> 
+                            </p:column>
+                        </p:dataTable>
+
+                        <p:dataTable id="daTable" var="adresse" value="#{employeBean.employe.adresse}" rows="3">
+                            <f:facet name="header">
+                                <h:outputLabel value="#{msg['hotel.view.app.adresse']}" />
+                            </f:facet>
+                            
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.adresse.telephone']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{adresse.telephone}" /> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.adresse.email']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{adresse.email}" /> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.adresse.boitePostal']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{adresse.boitePostal}" /> 
+                            </p:column>
+                        </p:dataTable>
+
+                        <p:dataTable id="dataTable" var="periode" value="#{employeBean.periodes}" rows="10">
+                            <f:facet name="header">
+                                <h:outputLabel value="#{msg['hotel.view.employe.historiqueFonction']}" />
+                            </f:facet>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.app.fonction']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{periode.fonction}" /> 
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.periode.dateDebut']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{periode.dateDebut}" > 
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>   
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="#{msg['hotel.view.periode.dateFin']}" />  
+                                </f:facet>  
+                                <h:outputText value="#{periode.dateFin}" > 
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>  
+                            </p:column>
+                        </p:dataTable>
+
+                        <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                            <h:panelGrid columns="6" cellpadding="5">
+                                <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{employeBean.doList()}" icon="ui-icon-folder-open" ajax="false" />
+                                <p:commandButton value="#{msg['hotel.view.app.editBouton']}" action="#{employeBean.doEdit()}" icon="ui-icon-refresh" />
+                                <p:commandButton value="#{msg['hotel.view.app.newBouton']}" action="#{employeBean.doNew()}" icon="ui-icon-document" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

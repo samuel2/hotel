@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Ressources Humaines : <h:outputText value="#{msg['hotel.view.app.employe']}" />
+        </ui:define>
+
+
+        <ui:define name="content">
+            <h:body>
+                <h:form id="employeFormEdit">
+                    <f:view>
+                        <f:metadata>
+                            <f:viewParam name="q" value="#{employeBean.employeId}" />
+                        </f:metadata>
+                    </f:view>
+
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+                        <p:fieldset legend="#{msg['hotel.view.employe.informationSurEmploye']}">
+                            <h:panelGrid columns="6" cellpadding="10">
+                                <p:outputLabel value="#{msg['hotel.view.employe.cni']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="cni" value="#{employeBean.employe.cni}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="cni" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.employe.nom']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="nom" value="#{employeBean.employe.nom}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="nom" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.employe.prenom']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="prenom" value="#{employeBean.employe.prenom}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="prenom" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.employe.sexe']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="sexe" value="#{employeBean.employe.sexe}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="sexe" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.employe.nationalite']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="nationalite" value="#{employeBean.employe.nationalite}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="nationalite" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.employe.dateNaissance']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="dateNaissance" value="#{employeBean.employe.dateNaissance}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:inputText>
+                                    <p:message for="dateNaissance" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.employe.lieuNaissance']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="lieuNaissance" value="#{employeBean.employe.lieuNaissance}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="lieuNaissance" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.adresse.telephone']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="telephone" value="#{employeBean.employe.adresse.telephone}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="telephone" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.adresse.email']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="email" value="#{employeBean.employe.adresse.email}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="email" />
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{msg['hotel.view.adresse.boitePostal']} : " />
+                                <h:panelGroup>
+                                    <p:inputText id="boitePostal" value="#{employeBean.employe.adresse.boitePostal}" required="true"
+                                                 requiredMessage="#{msg['hotel.view.error.validation']}" />
+                                    <p:message for="boitePostal" />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="#{msg['hotel.view.fonction.informationFonctionEmploye']}">
+
+                            <h:panelGrid columns="4" cellpadding="10">
+
+                                <p:outputLabel value="#{msg['hotel.view.fonction.title']}:"/>
+                                <p:selectOneMenu value="#{employeBean.periode.fonction.id}" style="margin-left: 75px; width: 160px;">
+                                    <f:selectItems value="#{employeBean.fonctions}" var="fonction"
+                                                   itemLabel="#{fonction}" itemValue="#{fonction.id}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="#{msg['hotel.view.periode.dateDebut']}" style="margin-left: 5px"/>
+                                <h:panelGroup>
+                                    <p:calendar value="#{employeBean.periode.dateDebut}" locale="fr">
+                                    </p:calendar>
+                                </h:panelGroup> 
+
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="#{msg['hotel.view.app.action']}">
+                            <h:panelGrid columns="6" cellpadding="10">
+
+                                <h:inputHidden id="id_employe" value="#{employeBean.employe.id}"/>
+
+                                <h:inputHidden id="id_periode" value="#{employeBean.periode.id}"/>
+
+                                <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{employeBean.doList()}" ajax="false" icon="ui-icon-folder-open" />
+                                <p:commandButton value="#{msg['hotel.view.app.saveBouton']}" action="#{employeBean.doUpdate()}" ajax="false" icon="ui-icon-disk">
+                                    <f:actionListener type="com.urservices.urerp.hotel.listener.CniEmployeValidationListener" />
+                                </p:commandButton>
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

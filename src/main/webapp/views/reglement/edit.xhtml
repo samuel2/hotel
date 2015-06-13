@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    
+    <ui:composition template="./../../index.xhtml">
+        <ui:define name="title">
+            Modification du reglement #{reglementBean.reglement.numero}
+        </ui:define>
+        <ui:define name="content">
+            
+            <h:form id="reglementFormEdit">
+            <f:metadata>
+                <f:viewParam name="q" value="#{reglementBean.reglementId}"/>
+            </f:metadata>
+                <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+                    <p:fieldset legend="#{msg['hotel.view.reglement.newReglement']}">
+                        <h:panelGrid columns="9" cellpadding="5">
+                            <p:outputLabel value="#{msg['hotel.view.reglement.numero']}  :"/>
+                            <h:panelGroup>
+                                <p:inputText id="numero" value="#{reglementBean.reglement.numero}"
+                                            required="true"  requiredMessage="#{msg['hotel.view.error.validation']}"/>
+                              <p:message for="numero"/>
+                            </h:panelGroup>
+                            <h:inputHidden id="id" value="#{reglementBean.reglement.id}"/>
+                            
+                            <p:outputLabel value="#{msg['hotel.view.reglement.montant']}  :"/>
+                            <h:panelGroup>
+                                <p:inputText id="montant" value="#{reglementBean.reglement.montant}"
+                                            required="true"  requiredMessage="#{msg['hotel.view.error.validation']}"/>
+                              <p:message for="montant"/>
+                            </h:panelGroup>
+                            
+                            <p:outputLabel value="#{msg['hotel.view.reglement.dateReglement']}  :"/>
+                            <h:panelGroup>
+                                <p:inputText id="dateReglement" value="#{reglementBean.reglement.dateReglement}"
+                                            required="true"  requiredMessage="#{msg['hotel.view.error.validation']}"/>
+                              <p:message for="dateReglement"/>
+                            </h:panelGroup>
+                    </h:panelGrid>
+
+                    </p:fieldset>
+
+                    <p:fieldset legend="Action">
+                            <h:panelGrid columns="2" cellpadding="5">  
+                                <p:commandButton value="#{msg['hotel.view.app.listeBouton']}" action="#{reglementBean.doList()}" ajax="false" immediate="true" icon="ui-icon-folder-open" />
+                                <p:commandButton value="#{msg['hotel.view.app.editBouton']}" action="#{reglementBean.doUpdate()}" ajax="false" icon="ui-icon-refresh" />
+                         </h:panelGrid> 
+                    </p:fieldset>
+
+                </h:panelGrid>
+                
+           </h:form>
+      </ui:define>
+    </ui:composition>
+</html>
+

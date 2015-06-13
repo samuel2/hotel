@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <title>Face Title</title>
+    </h:head>
+
+    <h:body>
+        <h:form id="toolbar">
+            <p:toolbar>
+                <p:toolbarGroup align="left">
+                    <p:commandButton type="button" value="#{msg['hotel.view.app.home']}" icon="ui-icon-home"/>  
+                    <p:commandButton type="button" value="#{msg['hotel.view.app.operation']}" icon="ui-icon-folder-open"/>  
+                    <p:commandButton type="button" value="#{msg['hotel.view.app.client']}" icon="ui-icon-folder-open"/>  
+                    <p:commandButton type="button" value="#{msg['hotel.view.app.ressourcesHumaines']}" icon="ui-icon-folder-open" />  
+                    <p:commandButton type="button" value="#{msg['hotel.view.app.chambre']}" icon="ui-icon-folder-open"/>  
+                    <p:commandButton type="button" value="#{msg['hotel.view.app.occupant']}" icon="ui-icon-folder-open"/>
+
+                    <p:separator />
+
+                </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+                    <p:menuButton value="#{msg['hotel.view.app.user']} : Guest">  
+                        <p:menuitem value="Connexion" url="http://www.primefaces.org" icon="ui-icon-disk" />
+                    </p:menuButton> 
+                    
+                    <p:separator />
+                    
+                    <p:menuButton value="#{msg['hotel.view.app.language']}">
+                        <p:menuitem class="fr" value="#{msg['hotel.view.app.francais']}" action="#{chooseLanguage.setFrenchLocale()}" ajax="false" immediate="true" />
+                        <p:menuitem class="en" value="#{msg['hotel.view.app.anglais']}" action="#{chooseLanguage.setEnglishLocale()}" ajax="false" immediate="true"/>
+                    </p:menuButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+        </h:form>
+    </h:body>
+</html>
